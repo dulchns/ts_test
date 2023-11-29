@@ -1,4 +1,5 @@
 import ListItem from "../ListItem/ListItem.js"
+import { IData } from "../../types.js"
 
 export default class TodoList {
     root: HTMLDivElement | null
@@ -11,12 +12,12 @@ export default class TodoList {
         this.controls = root ? root.querySelector('.todo-controls') : null
     }
 
-    getData():object[] | any[] {
+    getData():Array<IData> {
         const data: string | null = localStorage.getItem('todos')
         return data ? JSON.parse(data) : []
     }
 
-    setData(data: object[]):void {
+    setData(data: Array<IData>):void {
         localStorage.setItem('todos', JSON.stringify(data))
     }
 

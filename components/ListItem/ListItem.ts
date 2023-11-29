@@ -1,7 +1,4 @@
-interface IData {
-    title: string,
-    completed: boolean
-}
+import { IData } from "../../types.js"
 
 export default class ListItem {
     value: string

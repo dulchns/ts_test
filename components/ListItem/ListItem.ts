@@ -28,19 +28,19 @@ export default class ListItem {
         deleteBtn.textContent = 'Delete'
         item.append(check, title, editBtn, deleteBtn)
         item.classList.add('todo-item')
-        check.addEventListener('change', ():void => {
+        check.addEventListener('change', () => {
             this.taskChange({id: this.id, title: this.title, completed: !this.completed})
         })
-        editBtn.addEventListener('click', ():void => {
+        editBtn.addEventListener('click', () => {
             this.edit()
         })
-        deleteBtn.addEventListener('click', ():void => {
+        deleteBtn.addEventListener('click', () => {
             this.taskChange()
         })
         return this.item = item
     }
 
-    taskChange(value?: IData):void {
+    taskChange(value?: IData) {
         let data = this.list.getData()
         data = data.filter(el => el.id !== this.id)
         if(value) { 
@@ -51,21 +51,21 @@ export default class ListItem {
         this.list.render()
     }
     
-    edit():void {
+    edit() {
         const input = document.createElement('input')
-        input.value = (<HTMLParagraphElement>this.item?.children[1]).textContent || ''
-        if (this.item) {
+        input.value = (this.item?.children[1] as HTMLParagraphElement).textContent || ''
+        if(this.item) {
             this.item.innerHTML = ''
             this.item.append(input)
             input.focus()
         }
-        const changeApply = (e: KeyboardEvent):void => {
+        const changeApply = (e: KeyboardEvent) => {
             if(e.key === 'Enter') {
                 this.taskChange({id: this.id, title: input.value, completed: this.completed})
                 input.removeEventListener('keydown', changeApply)
             }
         }
-        const changeDecline = (e: FocusEvent):void => {
+        const changeDecline = (e: FocusEvent) => {
             input.removeEventListener('keydown', changeApply)
             input.removeEventListener('blur', changeDecline)
             this.list.render()

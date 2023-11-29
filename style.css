@@ -10,12 +10,20 @@ body {
 }
 
 .todo-list {
+    width: 100%;
     max-width: 500px;
 }
 
 .todo-item {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
     padding: 5px;
     border: 1px solid black;
+}
+
+.todo-item p {
+    flex-grow: 1;
 }
 
 .todo-controls {
